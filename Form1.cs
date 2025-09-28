@@ -6,9 +6,16 @@ namespace SP3_RepuestoVentas
         {
             InitializeComponent();
         }
-         string descripcion;
-         int indice = 0;
-         string[] vectorRepuesto = new string[100];
+        // Variables globales
+        string descripcion;
+        int indice = 0;
+        string[] vectorRepuesto = new string[100];
+        string marca = "";
+        string origen = "";
+        string numRepuesto = "";
+        string descripcionRepuesto = "";
+        decimal precio = 0;
+
         private void frmRepuestoVentas_Load(object sender, EventArgs e)
         {
             // Cargar los combos al iniciar el formulario
@@ -73,7 +80,12 @@ namespace SP3_RepuestoVentas
         {
             // Almacena repuesto
             indice = 0;
-            vectorRepuesto[indice] = cmbMarca.Text + " " + cmbOrigen.Text + " " + mskNumRepuest.Text + " " + txtDescrip.Text + " " + mskPrecio.Text;
+            marca = cmbMarca.Text;
+            origen = cmbOrigen.Text;
+            numRepuesto = mskNumRepuest.Text;
+            descripcionRepuesto = txtDescrip.Text;
+            precio = Convert.ToDecimal(mskPrecio.Text);
+            vectorRepuesto[indice] = marca + " " + origen + " " + numRepuesto + " " + descripcionRepuesto + " " + precio.ToString("C");
             indice++;
         }
 
@@ -81,6 +93,23 @@ namespace SP3_RepuestoVentas
         {
             this.Close();
         }
-        
+
+        private void cmbMarcaOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbMarcaOrigen.Items.Add("(P) Peugeot");
+            cmbMarcaOrigen.Items.Add("(F) Fiat");
+            cmbMarcaOrigen.Items.Add("(R) Renault");
+        }
+
+        private void cmbOrigenConsult_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbOrigenConsult.Items.Add("Importado");
+            cmbOrigenConsult.Items.Add("Nacional");
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
