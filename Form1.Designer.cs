@@ -41,8 +41,15 @@
             lblNumRepuesto = new Label();
             lblOrigen = new Label();
             lblMarca = new Label();
-            grupboxConsult = new GroupBox();
+            cmbOrgConsult = new GroupBox();
+            btnConsultar = new Button();
+            lblConsultarResul = new Label();
+            cmbOrgConsul = new ComboBox();
+            cmbMarConsult = new ComboBox();
+            lblOrigenConsult = new Label();
+            lblMarcaConsult = new Label();
             grupboxRegRep.SuspendLayout();
+            cmbOrgConsult.SuspendLayout();
             SuspendLayout();
             // 
             // grupboxRegRep
@@ -183,27 +190,92 @@
             lblMarca.TabIndex = 0;
             lblMarca.Text = "Marca";
             // 
-            // grupboxConsult
+            // cmbOrgConsult
             // 
-            grupboxConsult.Location = new Point(12, 287);
-            grupboxConsult.Name = "grupboxConsult";
-            grupboxConsult.Size = new Size(348, 180);
-            grupboxConsult.TabIndex = 1;
-            grupboxConsult.TabStop = false;
-            grupboxConsult.Text = "Consulta de Datos";
+            cmbOrgConsult.Controls.Add(btnConsultar);
+            cmbOrgConsult.Controls.Add(lblConsultarResul);
+            cmbOrgConsult.Controls.Add(cmbOrgConsul);
+            cmbOrgConsult.Controls.Add(cmbMarConsult);
+            cmbOrgConsult.Controls.Add(lblOrigenConsult);
+            cmbOrgConsult.Controls.Add(lblMarcaConsult);
+            cmbOrgConsult.Location = new Point(12, 287);
+            cmbOrgConsult.Name = "cmbOrgConsult";
+            cmbOrgConsult.Size = new Size(340, 229);
+            cmbOrgConsult.TabIndex = 1;
+            cmbOrgConsult.TabStop = false;
+            cmbOrgConsult.Text = "Consulta de Datos";
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.Location = new Point(133, 190);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(75, 30);
+            btnConsultar.TabIndex = 5;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
+            // lblConsultarResul
+            // 
+            lblConsultarResul.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblConsultarResul.BorderStyle = BorderStyle.Fixed3D;
+            lblConsultarResul.Location = new Point(26, 76);
+            lblConsultarResul.Name = "lblConsultarResul";
+            lblConsultarResul.Size = new Size(297, 111);
+            lblConsultarResul.TabIndex = 4;
+            lblConsultarResul.Text = "_";
+            lblConsultarResul.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // cmbOrgConsul
+            // 
+            cmbOrgConsul.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbOrgConsul.FormattingEnabled = true;
+            cmbOrgConsul.Location = new Point(226, 32);
+            cmbOrgConsul.Name = "cmbOrgConsul";
+            cmbOrgConsul.Size = new Size(97, 23);
+            cmbOrgConsul.TabIndex = 3;
+            // 
+            // cmbMarConsult
+            // 
+            cmbMarConsult.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMarConsult.FormattingEnabled = true;
+            cmbMarConsult.Location = new Point(80, 32);
+            cmbMarConsult.Name = "cmbMarConsult";
+            cmbMarConsult.Size = new Size(94, 23);
+            cmbMarConsult.TabIndex = 2;
+            // 
+            // lblOrigenConsult
+            // 
+            lblOrigenConsult.AutoSize = true;
+            lblOrigenConsult.Location = new Point(180, 35);
+            lblOrigenConsult.Name = "lblOrigenConsult";
+            lblOrigenConsult.Size = new Size(43, 15);
+            lblOrigenConsult.TabIndex = 1;
+            lblOrigenConsult.Text = "Origen";
+            // 
+            // lblMarcaConsult
+            // 
+            lblMarcaConsult.AutoSize = true;
+            lblMarcaConsult.Location = new Point(21, 35);
+            lblMarcaConsult.Name = "lblMarcaConsult";
+            lblMarcaConsult.Size = new Size(40, 15);
+            lblMarcaConsult.TabIndex = 0;
+            lblMarcaConsult.Text = "Marca";
             // 
             // frmRepuestoVentas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(364, 492);
-            Controls.Add(grupboxConsult);
+            ClientSize = new Size(364, 519);
+            Controls.Add(cmbOrgConsult);
             Controls.Add(grupboxRegRep);
             Name = "frmRepuestoVentas";
             Text = "Repuestos Ventas";
             Load += frmRepuestoVentas_Load;
             grupboxRegRep.ResumeLayout(false);
             grupboxRegRep.PerformLayout();
+            cmbOrgConsult.ResumeLayout(false);
+            cmbOrgConsult.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -216,12 +288,18 @@
         private ComboBox cmbMarca;
         private Label lblPrecio;
         private Label lblDecripRepuesto;
-        private GroupBox grupboxConsult;
+        private GroupBox cmbOrgConsult;
         private TextBox txtDescrip;
         private MaskedTextBox mskNumRepuest;
         private ComboBox cmbOrigen;
         private MaskedTextBox mskPrecio;
         private Button btnCancelar;
         private Button btnRegistrar;
+        private Label lblOrigenConsult;
+        private Label lblMarcaConsult;
+        private ComboBox cmbMarConsult;
+        private ComboBox cmbOrgConsul;
+        private Label lblConsultarResul;
+        private Button btnConsultar;
     }
 }

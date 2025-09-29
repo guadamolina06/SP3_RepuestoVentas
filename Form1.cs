@@ -6,9 +6,14 @@ namespace SP3_RepuestoVentas
         {
             InitializeComponent();
         }
-         string descripcion;
-         int indice = 0;
-         string[] vectorRepuesto = new string[100];
+
+        int indice = 0;
+        string[] vectorRepuesto = new string[100];
+        int vMarca = 0;
+        int vOrigen = 0;
+        decimal vPrecio = 0;
+        int vNumRepuesto = 0;
+        string vDescripcion = "";
         private void frmRepuestoVentas_Load(object sender, EventArgs e)
         {
             // Cargar los combos al iniciar el formulario
@@ -18,6 +23,13 @@ namespace SP3_RepuestoVentas
             // Cargar el combo Origen
             cmbOrigen.Items.Add("Importado");
             cmbOrigen.Items.Add("Nacional");
+            //Cargar combos de consulta
+            cmbMarConsult.Items.Add("(P) Peugeot");
+            cmbMarConsult.Items.Add("(F) Fiat");
+            cmbMarConsult.Items.Add("(R)Renault");
+
+            cmbOrgConsul.Items.Add("Importado");
+            cmbOrgConsul.Items.Add("Nacional");
         }
 
         private void cmbMarca_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,14 +85,57 @@ namespace SP3_RepuestoVentas
         {
             // Almacena repuesto
             indice = 0;
-            vectorRepuesto[indice] = cmbMarca.Text + " " + cmbOrigen.Text + " " + mskNumRepuest.Text + " " + txtDescrip.Text + " " + mskPrecio.Text;
+            vMarca = cmbMarca.SelectedIndex;
+            vOrigen = cmbOrigen.SelectedIndex;
+            vNumRepuesto = int.Parse(mskNumRepuest.Text);
+            vDescripcion = txtDescrip.Text;
+            vPrecio = decimal.Parse(mskPrecio.Text);
+
+            vectorRepuesto[indice] = vMarca + " " + vOrigen + " " + vNumRepuesto + " " + vDescripcion + " " + vPrecio;
             indice++;
+            cmbMarca.SelectedIndex = -1;
+            cmbOrigen.SelectedIndex = -1;
+            mskNumRepuest.Clear();
+            txtDescrip.Clear();
+            mskPrecio.Clear();
+            cmbOrigen.Enabled = false;
+            mskNumRepuest.Enabled = false;
+            txtDescrip.Enabled = false;
+            mskPrecio.Enabled = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+           if (cmbMarConsult.SelectedIndex != -1 && cmbOrgConsul.SelectedIndex != -1)
+            {
+                // Realizar la consulta
+                int marcaConsulta = cmbMarConsult.SelectedIndex;
+                int origenConsulta = cmbOrgConsul.SelectedIndex;
+                lblConsultarResul
+                for (int i = 0; i < indice; i++)
+                {
+                    string[] datosRepuesto = vectorRepuesto[i].Split(' ');
+                    int marcaRepuesto = int.Parse(datosRepuesto[0]);
+                    int origenRepuesto = int.Parse(datosRepuesto[1]);
+                    if (marcaRepuesto == marcaConsulta && origenRepuesto == origenConsulta)
+                    {
+                        lstResultados.Items.Add(vectorRepuesto[i]);
+                    }
+                }
+                if (lstResultados.Items.Count == 0)
+                {
+                    lstResultados.Items.Add("No se encontraron repuestos para los criterios seleccionados.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione ambos criterios de consulta.", "Criterios incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
