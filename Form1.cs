@@ -17,13 +17,13 @@
 
         string [,] matRepuesto = new string[100, 5];
         int indiceGrabar = 0;
-
+        List<string> origenes = new List<string>();
+        List<string> listaMarcas = new List<string>();
         private void frmRepuestoVentas_Load(object sender, EventArgs e)
         {
             CargadorDatos();
             MessageBox.Show("Datos Cargados");
-            List<string> origenes = new List<string>();
-            List<string> listaMarcas = new List<string>();
+           
 
             for (int filas = 0; filas < matRepuesto.GetLength(0); filas++)
             {
@@ -67,7 +67,7 @@
 
         private void CargadorDatos()
         {
-
+            matRepuesto[0, 0] = "Nissan"; matRepuesto[0, 1] = "Francia"; matRepuesto[0, 2] = "10000"; matRepuesto[0, 3] = "96622"; matRepuesto[0, 4] = "Bujía de encendid";
             matRepuesto[1, 0] = "BMW"; matRepuesto[1, 1] = "España"; matRepuesto[1, 2] = "10001"; matRepuesto[1, 3] = "21022"; matRepuesto[1, 4] = "Pastillas de freno";
             matRepuesto[2, 0] = "Peugeot"; matRepuesto[2, 1] = "Corea del Sur"; matRepuesto[2, 2] = "10002"; matRepuesto[2, 3] = "73797"; matRepuesto[2, 4] = "Pastillas de freno";
             matRepuesto[3, 0] = "Ford"; matRepuesto[3, 1] = "México"; matRepuesto[3, 2] = "10003"; matRepuesto[3, 3] = "27146"; matRepuesto[3, 4] = "Amortiguador";
