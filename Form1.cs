@@ -260,7 +260,38 @@
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-         
+            string OrigenSeleccionada = cmbOrigenC.SelectedItem?.ToString();
+            string marcaSeleccionada = cmbMarcaC.SelectedItem?.ToString();
+
+            // Crear una lista para almacenar los resultados filtrados
+            List<string[]> resultado = new List<string[]>();
+
+            for (int i = 0; i < matRepuesto.GetLength(0); i++)
+            {
+                bool coincideMarca = string.IsNullOrEmpty(marcaSeleccionada) || matRepuesto[i, 0] == marcaSeleccionada;
+                bool coincideOrigen = string.IsNullOrEmpty(OrigenSeleccionada) || matRepuesto[i, 1] == OrigenSeleccionada;
+
+                if (coincideMarca && coincideOrigen)
+                {
+                    // Agregar la fila que coincide con los filtros
+                    resultado.Add(new string[] {
+                        matRepuesto[i, 0],
+                        matRepuesto[i, 1],
+                        matRepuesto[i, 2],
+                        matRepuesto[i, 3],
+                        matRepuesto[i, 4]
+                    });
+                }
+            }
+
+            // Limpiar el DataGridView antes de mostrar los resultados
+            dgvDatos.Rows.Clear();
+
+            // Mostrar los resultados en el DataGridView
+            foreach (var fila in resultado)
+            {
+                dgvDatos.Rows.Add(fila);
+            }
         }
     }
 }
